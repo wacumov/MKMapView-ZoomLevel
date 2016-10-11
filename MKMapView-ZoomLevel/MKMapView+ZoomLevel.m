@@ -86,8 +86,14 @@
   CLLocationDegrees maxLat = [MKMapView latitudeForOriginY:topLeftPixelY + scaledMapHeight];
   CLLocationDegrees latitudeDelta = -1 * (maxLat - minLat);
   
+    if (latitudeDelta > 180.0) { latitudeDelta = 180; }
+    if (longitudeDelta > 360.0) { longitudeDelta = 360; }
+    
   // create and return the lat/lng span
   MKCoordinateSpan span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta);
+    
+    
+    
   return span;
 }
 
@@ -156,6 +162,9 @@
 	CLLocationDegrees maxLat = [MKMapView latitudeForOriginY:bottomPixelY];
 	CLLocationDegrees latitudeDelta = -1 * (maxLat - minLat);
   
+    if (latitudeDelta > 180.0) { latitudeDelta = 180; }
+    if (longitudeDelta > 360.0) { longitudeDelta = 360; }
+    
 	// create and return the lat/lng span
 	MKCoordinateSpan span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta);
 	MKCoordinateRegion region = MKCoordinateRegionMake(centerCoordinate, span);
